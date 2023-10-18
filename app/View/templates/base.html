@@ -1,0 +1,50 @@
+<html>
+    <head>
+       {% if title %}
+          <title>{{ title }} - Research </title>
+       {% else %}
+          <title> Welcome to WSU Research Portal! </title>
+       {% endif %}
+       <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    </head>
+
+    <!-- Nav bar -->
+    
+    <body>
+        <div class ="nav-container">
+        <table>
+            <tr>
+                <!--  if current_user.is_authenticated  -->
+                    <td><a href="{{ url_for('routes.index') }}" class = "button">Home</a></td>
+                    <!-- <td><a href=" url_for('routes.applications')" class = "button"> View Applications </a></td> -->
+
+<!--                @@@ had to remove ginja statements in comments because they weren't getting ignored and caused errors @@@-->
+
+
+                     <!-- if current_user.is_faculty()  -->
+                    <td><a href="{{url_for('routes.new_position')}}" class = "button"> Create New Research Position </a></td>
+                     <!-- endif  -->
+
+
+                    <!-- <td><a href=" url_for('auth.logout')" class = "button"> Logout </a></td> -->
+                    <!-- <td> Current user is: <span class="useritem"> current_user.username </span> </td>   -->
+                <!--  else 
+                    <td> Current user is: <span class="useritem"> No user logged in </span> </td>  
+                 endif  -->
+            </tr>
+        </table>
+        </div>
+        <div>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                <div class="flash-container"> {{ message }}</div>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+            {% block content %} {% endblock %}
+        </div>
+
+    </body>
+</html>

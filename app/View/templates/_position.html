@@ -1,0 +1,49 @@
+<table class = "position-table" valign="top">
+    <tr> 
+        <td colspan="3">
+            <div> Position Manager: {{position.faculty.firstname}} {{position.faculty.lastname}}</div>
+        </td>
+        <td colspan="3">
+            <div class="postition-title"> {{position.title}} </div>
+        </td>
+        <td>
+            <div class="position-institution"> 
+               {{ position.faculty.primary_institution }}
+            </div> 
+         </td> 
+    </tr>
+    <tr>
+        <td>
+            <div class="position-description">
+              {{position.description}}    
+            </div>
+        </td> 
+    </tr>
+    <tr>
+        <td> 
+            <div class="position-requirements">
+                Start Date: {{position.start_date}}
+                <br>
+                End Date: {{position.end_date}}
+                <br>
+                Weekly Time Commitment: {{position.time_commitment}}
+                <br>
+                Research Fields:
+                {% for field in position.get_fields().all() %}
+                    <span class="field-item">
+                        {{ field.name }}
+                    </span>
+                {% endfor %}
+                <br>
+                Required Programming Language Experience:
+                {% for language in position.get_languages().all() %}
+                    <span class="language-item">
+                        {{ language.name }}
+                    </span>
+                {% endfor %}
+                <br>
+                Other Requirements: {{position.misc_requirements}}
+            </div>
+        </td>
+    </tr>
+</table>

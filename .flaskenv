@@ -1,0 +1,2 @@
+FLASK_APP=termProject.py
+FLASK_DEBUG=1
